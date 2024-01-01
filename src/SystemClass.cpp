@@ -196,7 +196,7 @@ void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight)
 
 	// Determine the resolution of the clients desktop screen.
 	screenWidth = GetSystemMetrics(SM_CXSCREEN);
-	screenHeight = GetSystemMetrics(SM_CXSCREEN);
+	screenHeight = GetSystemMetrics(SM_CYSCREEN);
 
 	// Setup the screen settings depending on whether it is running in full screen or in windowed mode.
 	if (FULL_SCREEN)
@@ -223,7 +223,7 @@ void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight)
 
 		// Place the window in the middle of the screen.
 		posX = (GetSystemMetrics(SM_CXSCREEN) - screenWidth) / 2;
-		posY = (GetSystemMetrics(SM_CXSCREEN) - screenHeight) / 2;
+		posY = (GetSystemMetrics(SM_CYSCREEN) - screenHeight) / 2;
 
 	}
 

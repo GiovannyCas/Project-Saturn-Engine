@@ -3,8 +3,11 @@
 #ifndef _APPLICATIONCLASS_H_
 #define _APPLICATIONCLASS_H_
 
-#include <Windows.h>
-
+//#include <Windows.h>
+#include "D3dClass.h"
+#include "CameraClass.h"
+#include "ModelClass.h"
+#include "ColorsShaderClass.h"
 
 //GRAPHIC Settings//////
 
@@ -18,7 +21,14 @@ const float SCREEN_NEAR = 0.3f;
 class ApplicationClass
 {
 private:
+
+	D3DClass* m_Direct3D;
+	CameraClass* m_Camera;
+	ModelClass* m_Model;
+	ColorsShaderClass* m_ColorShader;
+
 	bool Render();
+	
 
 public:
 	ApplicationClass();
