@@ -47,6 +47,12 @@
     <ClCompile Include="src\D3dClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\TextureShaderClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TextureClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\header\SystemClass.h">
@@ -70,9 +76,17 @@
     <ClInclude Include="src\header\D3dClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\header\TextureShaderClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\TextureClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\HLSL\colorVertexShader.hlsl" />
     <None Include="src\HLSL\colorPixelShader.hlsl" />
+    <None Include="src\HLSL\textureVertexShader.hlsl" />
+    <None Include="src\HLSL\texturePixelShader.hlsl" />
   </ItemGroup>
 </Project>
