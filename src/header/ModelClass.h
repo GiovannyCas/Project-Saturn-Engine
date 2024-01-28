@@ -28,7 +28,7 @@ private:
 	{
 		DirectX::XMFLOAT3 position;
 		DirectX::XMFLOAT2 texture;
-
+		DirectX::XMFLOAT3 normal;
 	};
 
 	int m_vertexCount, m_indexCount;

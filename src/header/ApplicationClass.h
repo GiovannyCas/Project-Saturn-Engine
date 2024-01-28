@@ -11,6 +11,10 @@
 
 #include "TextureShaderClass.h"
 
+#include "LightShaderClass.h"
+#include "LightClass.h"
+
+
 //GRAPHIC Settings//////
 
 const bool FULL_SCREEN = false;
@@ -29,9 +33,12 @@ private:
 	ModelClass* m_Model;
 	//ColorsShaderClass* m_ColorShader;
 
-	TextureShaderClass* m_TextureShader;
+	//TextureShaderClass* m_TextureShader;
 
-	bool Render();
+	LightShaderClass* m_LightShader;
+	LightClass* m_Light;
+
+	bool Render(float);
 	
 
 public:
