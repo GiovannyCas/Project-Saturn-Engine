@@ -6,7 +6,7 @@
 
 #include <d3d11.h>
 #include <DirectXMath.h>
-
+#include <fstream>
 
 #include "TextureClass.h"
 
@@ -24,11 +24,18 @@ private:
 
 	};
 
-	struct VertexTextureType
+	struct VertexType
 	{
 		DirectX::XMFLOAT3 position;
 		DirectX::XMFLOAT2 texture;
 		DirectX::XMFLOAT3 normal;
+	};
+
+	struct ModelType
+	{
+		float x, y, z;
+		float tu, tv;
+		float nx, ny, nz;
 	};
 
 	int m_vertexCount, m_indexCount;
@@ -37,12 +44,17 @@ private:
 
 	TextureClass* m_Texture;
 
+	ModelType* m_model;
+
 	bool InitializeBuffers(ID3D11Device*);
 	void ShutdownBuffers();
 	void RenderBuffers(ID3D11DeviceContext*);
 
 	bool LoadTexture(ID3D11Device*, ID3D11DeviceContext*, char*);
-	void ReleaseTexure();
+	void ReleaseTexture();
+
+	bool LoadModel(char*);
+	void ReleaseModel();
 
 public:
 
@@ -50,7 +62,7 @@ public:
 	ModelClass(const ModelClass&);
 	~ModelClass();
 
-	bool Initialize(ID3D11Device*);
+	bool Initialize(ID3D11Device*, ID3D11DeviceContext*, char*, char*);
 	bool InitializeWithTexture(ID3D11Device*, ID3D11DeviceContext*, char*);
 	void Shutdown();
 	void Render(ID3D11DeviceContext*);

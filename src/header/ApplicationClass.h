@@ -14,11 +14,16 @@
 #include "LightShaderClass.h"
 #include "LightClass.h"
 
+#include "fontshaderclass.h"
+#include "fontclass.h"
+#include "textclass.h"
+
+
 
 //GRAPHIC Settings//////
 
 const bool FULL_SCREEN = false;
-const bool VSYNC_ENABLE = true;
+const bool VSYNC_ENABLED = true;
 const float SCREEN_DEPTH = 1000.0f;
 const float SCREEN_NEAR = 0.3f;
 ////////////////////////
@@ -37,6 +42,11 @@ private:
 
 	LightShaderClass* m_LightShader;
 	LightClass* m_Light;
+
+	FontShaderClass* m_FontShader;
+	FontClass* m_Font;
+	TextClass* m_TextString1;
+	TextClass* m_TextString2;
 
 	bool Render(float);
 	

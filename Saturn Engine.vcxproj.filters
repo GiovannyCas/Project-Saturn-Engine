@@ -59,6 +59,15 @@
     <ClCompile Include="src\LightClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\FontClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FontShaderClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TextClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\header\SystemClass.h">
@@ -94,6 +103,15 @@
     <ClInclude Include="src\header\LightClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\header\FontClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\FontShaderClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\TextClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\HLSL\colorVertexShader.hlsl" />
@@ -102,5 +120,7 @@
     <None Include="src\HLSL\texturePixelShader.hlsl" />
     <None Include="src\HLSL\lightVertexShader.hlsl" />
     <None Include="src\HLSL\lightPixelShader.hlsl" />
+    <None Include="src\HLSL\fontVertexShader.hlsl" />
+    <None Include="src\HLSL\fontPixelShader.hlsl" />
   </ItemGroup>
 </Project>

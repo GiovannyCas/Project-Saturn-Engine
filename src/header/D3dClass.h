@@ -37,6 +37,11 @@ private:
 
 	D3D11_VIEWPORT	m_viewport;
 
+	ID3D11DepthStencilState* m_depthDisabledStencilState;
+
+	ID3D11BlendState* m_alphaEnableBlendingState;
+	ID3D11BlendState* m_alphaDisableBlendingState;
+
 public:
 	D3DClass();
 	D3DClass(const D3DClass&);
@@ -59,6 +64,12 @@ public:
 
 	void SetBackBufferRenderTarget();
 	void ResetViewport();
+
+	void TurnZBufferOn();
+	void TurnZBufferOff();
+
+	void EnableAlphaBlending();
+	void DisableAlphaBlending();
 };
 
 #endif 
