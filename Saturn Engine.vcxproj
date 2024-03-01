@@ -150,6 +150,7 @@
     <ClCompile Include="src\ColorsShaderClass.cpp" />
     <ClCompile Include="src\ApplicationClass.cpp" />
     <ClCompile Include="src\InputClass.cpp" />
+    <ClCompile Include="src\ShaderManagerClass.cpp" />
     <ClCompile Include="src\TextClass.cpp" />
     <ClCompile Include="src\TextureClass.cpp" />
     <ClCompile Include="src\WinMain.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="src\header\ColorsShaderClass.h" />
     <ClInclude Include="src\header\ApplicationClass.h" />
     <ClInclude Include="src\header\InputClass.h" />
+    <ClInclude Include="src\header\ShaderManagerClass.h" />
     <ClInclude Include="src\header\SystemClass.h" />
     <ClInclude Include="src\header\TextClass.h" />
     <ClInclude Include="src\header\TextureClass.h" />

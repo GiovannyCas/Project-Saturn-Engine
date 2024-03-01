@@ -6,7 +6,7 @@ ApplicationClass::ApplicationClass()
 	m_Direct3D = 0;
 	m_Camera = 0;
 	m_Model = 0;
-	m_LightShader = 0;
+	
 	m_Light = 0;
 
 	m_FontShader = 0;
@@ -69,15 +69,8 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 
-	// Create and initialize the light shader object.
-	m_LightShader = new LightShaderClass;
-
-	result = m_LightShader->Initialize(m_Direct3D->GetDevice(), hwnd);
-	if (!result)
-	{
-		MessageBox(hwnd, L"Could not initialize the light shader object.", L"Error", MB_OK);
-		return false;
-	}
+	
+	
 
 	// Create and initialize the light object.
 	m_Light = new LightClass;
@@ -96,6 +89,14 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 
+	//Create and initialize the shader manger object.
+	m_ShaderManager = new ShaderManagerClass;
+
+	result = m_ShaderManager->Initialize(m_Direct3D->GetDevice(), hwnd);
+	if (!result)
+	{
+		return false;
+	}
 	// Create and initialize the font object.
 	m_Font = new FontClass;
 
@@ -169,11 +170,11 @@ void ApplicationClass::Shutdown()
 	}
 
 	// Release the light shader object.
-	if (m_LightShader)
+	if (m_ShaderManager)
 	{
-		m_LightShader->Shutdown();
-		delete m_LightShader;
-		m_LightShader = 0;
+		m_ShaderManager->Shutdown();
+		delete m_ShaderManager;
+		m_ShaderManager = 0;
 	}
 
 	// Release the model object.
@@ -258,12 +259,14 @@ bool ApplicationClass::Render(float rotation)
 	m_Model->Render(m_Direct3D->GetDeviceContext());
 
 	// Render the model using the light shader.
-	result = m_LightShader->Render(m_Direct3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, m_Model->GetTexture(),
+	result = m_ShaderManager->RenderLightShader(m_Direct3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, m_Model->GetTexture(),
 		m_Light->GetDirection(), m_Light->GetAmbientColor(), m_Light->GetDiffuseColor());
 	if (!result)
 	{
 		return false;
 	}
+
+	
 
 	// Disable the Z buffer and enable alpha blending for 2D rendering.
 	m_Direct3D->TurnZBufferOff();
