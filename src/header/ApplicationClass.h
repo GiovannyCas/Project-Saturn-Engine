@@ -18,6 +18,10 @@
 
 #include "FpsClass.h"
 
+#include "ImGuiClass.h"
+
+#include "PositionClass.h"
+
 
 //GRAPHIC Settings//////
 
@@ -42,7 +46,11 @@ private:
 	FontClass* m_Font;
 
 	ShaderManagerClass* m_ShaderManager;
+
+	ImGuiClass* m_gui;
 	
+	PositionClass* m_Position;
+
 
 	FpsClass* m_Fps;
 	TextClass* m_FpsString;
@@ -60,7 +68,7 @@ public:
 	bool Initialize(int screenWidth, int screenHight, HWND hwnd);
 	void Shutdown();
 	bool Frame();
-
+	bool HandleInput(float, int);
 
 
 

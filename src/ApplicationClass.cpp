@@ -12,9 +12,12 @@ ApplicationClass::ApplicationClass()
 	m_FontShader = 0;
 	m_Font = 0;
 	
+	m_gui = 0;
 
 	m_Fps = 0;
 	m_FpsString = 0;
+
+	m_Position = 0;
 }
 
 
@@ -47,11 +50,24 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 
+	m_gui = new ImGuiClass;
+
+	m_gui->Initialize(hwnd, m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext());
+
 	// Create the camera object.
 	m_Camera = new CameraClass;
 
 	// Set the initial position of the camera.
 	m_Camera->SetPosition(0.0f, 0.0f, -10.0f);
+
+	m_Position = new PositionClass;
+
+	if (!m_Position)
+	{
+		return false;
+	}
+
+	m_Position->SetPosition(0.0f, 0.0f, -10.0f);
 
 	// Set the file name of the model.
 	strcpy_s(modelFilename, "resources/cube.txt");
@@ -192,6 +208,20 @@ void ApplicationClass::Shutdown()
 		m_Camera = 0;
 	}
 
+	// ShutDown the Gui object.
+	if (m_gui)
+	{
+		m_gui->Shutdown();
+		delete m_gui;
+		m_gui = 0;
+	}
+
+	if (m_Position)
+	{
+		delete m_Position;
+		m_Position = 0;
+	}
+
 	// Release the Direct3D object.
 	if (m_Direct3D)
 	{
@@ -209,11 +239,11 @@ bool ApplicationClass::Frame()
 	static float rotation = 0.0f;
 	bool result;
 
-	result = UpdateFps();
+	/*result = UpdateFps();
 	if (!result)
 	{
 		return false;
-	}
+	}*/
 
 
 	// Update the rotation variable each frame.
@@ -236,7 +266,7 @@ bool ApplicationClass::Frame()
 
 bool ApplicationClass::Render(float rotation)
 {
-	DirectX::XMMATRIX worldMatrix, viewMatrix, projectionMatrix, orthoMatrix;
+	DirectX::XMMATRIX worldMatrix, viewMatrix, projectionMatrix, rotateMatrix, translateMatrix, scaleMatrix, srMatrix, orthoMatrix;
 	bool result;
 
 
@@ -252,8 +282,11 @@ bool ApplicationClass::Render(float rotation)
 	m_Direct3D->GetProjectionMatrix(projectionMatrix);
 	m_Direct3D->GetOrthoMatrix(orthoMatrix);
 
+	rotateMatrix = DirectX::XMMatrixRotationY(rotation);  // Build the rotation matrix.
+	translateMatrix = DirectX::XMMatrixTranslation(-2.0f, 0.0f, 0.0f);  // Build the translation matrix.
+
 	// Rotate the world matrix by the rotation value so that the model will spin.
-	worldMatrix = DirectX::XMMatrixRotationY(rotation);
+	worldMatrix = DirectX::XMMatrixMultiply(rotateMatrix, translateMatrix);
 
 	// Put the model vertex and index buffers on the graphics pipeline to prepare them for drawing.
 	m_Model->Render(m_Direct3D->GetDeviceContext());
@@ -265,28 +298,30 @@ bool ApplicationClass::Render(float rotation)
 	{
 		return false;
 	}
-
+	
 	
 
 	// Disable the Z buffer and enable alpha blending for 2D rendering.
-	m_Direct3D->TurnZBufferOff();
-	m_Direct3D->EnableAlphaBlending();
+	/*m_Direct3D->TurnZBufferOff();
+	m_Direct3D->EnableAlphaBlending();*/
 
-	m_Direct3D->GetWorldMatrix(worldMatrix);
+	//m_Direct3D->GetWorldMatrix(worldMatrix);
 
-	// Render the fps text string using the font shader.
-	m_FpsString->Render(m_Direct3D->GetDeviceContext());
+	//// Render the fps text string using the font shader.
+	//m_FpsString->Render(m_Direct3D->GetDeviceContext());
 
-	result = m_FontShader->Render(m_Direct3D->GetDeviceContext(), m_FpsString->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix,
-		m_Font->GetTexture(), m_FpsString->GetPixelColor());
-	if (!result)
-	{
-		return false;
-	}
+	//result = m_FontShader->Render(m_Direct3D->GetDeviceContext(), m_FpsString->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix,
+	//	m_Font->GetTexture(), m_FpsString->GetPixelColor());
+	//if (!result)
+	//{
+	//	return false;
+	//}
 
 	// Enable the Z buffer and disable alpha blending now that 2D rendering is complete.
-	m_Direct3D->TurnZBufferOn();
-	m_Direct3D->DisableAlphaBlending();
+	/*m_Direct3D->TurnZBufferOn();
+	m_Direct3D->DisableAlphaBlending();*/
+
+	m_gui->Render(m_Camera);
 
 	// Present the rendered scene to the screen.
 	m_Direct3D->EndScene();
@@ -360,6 +395,57 @@ bool ApplicationClass::UpdateFps()
 	{
 		return false;
 	}
+
+	return true;
+}
+
+
+bool ApplicationClass::HandleInput(float frameTime, int input)
+{
+	
+	float posX, posY, posZ, rotX, rotY, rotZ;
+
+	// Set the frame time for calculating the updated position.
+	m_Position->SetFrameTime(frameTime);
+
+	switch (input)
+	{
+	case 1:
+		m_Position->LookDownward(true);
+		break;
+	case 2:
+		m_Position->TurnLeft(true);
+		break;
+	case 3:
+		m_Position->LookUpward(true);
+		break;
+	case 4:
+		m_Position->TurnRight(true);
+		break;
+	case 5:
+		m_Position->MoveForward(true);
+		break;
+	case 6:
+		m_Position->TurnLeft(true);
+		break;
+	case 7:
+		m_Position->MoveBackward(true);
+		break;
+	case 8:
+		m_Position->TurnRight(true);
+		break;
+	default:
+			break;
+	}
+
+
+	// Get the view point position/rotation.
+	m_Position->GetPosition(posX, posY, posZ);
+	m_Position->GetRotation(rotX, rotY, rotZ);
+
+	// Set the position of the camera.
+	m_Camera->SetPosition(posX, posY, posZ);
+	m_Camera->SetRotation(rotX, rotY, rotZ);
 
 	return true;
 }

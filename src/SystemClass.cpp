@@ -5,6 +5,7 @@ SystemClass::SystemClass()
 {
 	m_Input = 0;
 	m_Application = 0;
+	m_Timer = 0;
 }
 
 SystemClass::SystemClass(const SystemClass& other)
@@ -31,12 +32,22 @@ bool SystemClass::Initialize()
 
 	// Create and initialize the input object.  This object will be used to handle reading the keyboard input from the user.
 	m_Input = new InputClass();
-	m_Input->Initialize();
+	m_Input->Initialize(m_hinstance, m_hwnd, screenWidth, screenHeight);
 	
 	// Create and initialize the application class object.  This object will handle rendering all the graphics for this application.
 	m_Application = new ApplicationClass();
 	
 	result = m_Application->Initialize(screenWidth, screenHeight, m_hwnd);
+
+	if (!result)
+	{
+		return false;
+	}
+
+	//Create and initialize the timer object.
+	m_Timer = new TimerClass();
+
+	result = m_Timer->Initialize();
 
 	if (!result)
 	{
@@ -60,8 +71,15 @@ void SystemClass::Shutdown()
 	// Release the input object.
 	if (m_Input)
 	{
+		m_Input->Shutdown();
 		delete m_Input;
 		m_Input = 0;
+	}
+
+	if (m_Timer)
+	{
+		delete m_Timer;
+		m_Timer = 0;
 	}
 
 	// Shutdown the window.
@@ -98,6 +116,8 @@ void SystemClass::Run()
 		else
 		{
 			// Otherwise do the frame processing.
+			
+
 			result = Frame();
 			if (!result)
 			{
@@ -116,11 +136,26 @@ bool SystemClass::Frame()
 {
 	bool result;
 
-	// Check if the user pressed escape and wants to exit the application.
-	if (m_Input->IsKeyDown(VK_ESCAPE))
+
+
+	// Read the user input.
+	result = m_Input->Frame();
+	if (!result)
 	{
 		return false;
 	}
+
+	// Check if the user pressed escape and wants to exit the application.
+	if (m_Input->IsEscapePressed() == true)
+	{
+		return false;
+	}
+
+	m_Timer->Frame();
+
+
+
+	m_Application->HandleInput(m_Timer->GetTime(), m_Input->HandleInput());
 
 	// Do the frame processing for the application class object.
 	result = m_Application->Frame();
@@ -133,32 +168,39 @@ bool SystemClass::Frame()
 
 }
 
+extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
 LRESULT CALLBACK SystemClass::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPARAM lparam)
 {
-	switch (umsg)
-	{
-		// Check if a key has been pressed on the keyboard.
-	case WM_KEYDOWN:
-	{
-		// If a key is pressed send it to the input object so it can record that state.
-		m_Input->KeyDown((unsigned int)wparam);
-		return 0;
-	}
-		// Check if a key has been released on the keyboard.
-	case WM_KEYUP:
-	{
-		// If a key is released then send it to the input object so it can unset the state for that key.
-		m_Input->KeyUp((unsigned int)wparam);
-		return 0;
-	}
+	if (ImGui_ImplWin32_WndProcHandler(hwnd, umsg, wparam, lparam))
+		return true;
 
-		// Any other messages send to the default message handler as our application won't make use of them.
-	default:
-	{
-		return DefWindowProc(hwnd, umsg, wparam, lparam);
-	}
+	//switch (umsg)
+	//{
+	//	// Check if a key has been pressed on the keyboard.
+	//case WM_KEYDOWN:
+	//{
+	//	// If a key is pressed send it to the input object so it can record that state.
+	//	m_Input->KeyDown((unsigned int)wparam);
+	//	return 0;
+	//}
+	//	// Check if a key has been released on the keyboard.
+	//case WM_KEYUP:
+	//{
+	//	// If a key is released then send it to the input object so it can unset the state for that key.
+	//	m_Input->KeyUp((unsigned int)wparam);
+	//	return 0;
+	//}
 
-	}
+	//	// Any other messages send to the default message handler as our application won't make use of them.
+	//default:
+	//{
+	//	return DefWindowProc(hwnd, umsg, wparam, lparam);
+	//}
+
+	//}
+
+	return DefWindowProc(hwnd, umsg, wparam, lparam);
 
 }
 
@@ -247,7 +289,7 @@ void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight)
 	SetFocus(m_hwnd);
 
 	// Hide the mouse cursor.
-	ShowCursor(false);
+	ShowCursor(true);
 
 	return;
 

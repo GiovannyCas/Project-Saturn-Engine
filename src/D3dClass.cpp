@@ -1,6 +1,7 @@
 #include "../src/header/D3dClass.h"
 
 
+
 D3DClass::D3DClass()
 {
 	m_swapChain = 0;
@@ -11,6 +12,8 @@ D3DClass::D3DClass()
 	m_depthStencilState = 0;
 	m_depthStencilView = 0;
 	m_rasterState = 0;
+
+	
 
 	m_depthDisabledStencilState = 0;
 
@@ -408,6 +411,9 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 		return false;
 	}
 
+	
+
+	
 	return true;
 }
 
@@ -486,6 +492,7 @@ void D3DClass::Shutdown()
 		m_swapChain = 0;
 	}
 
+	
 	return;
 }
 
@@ -507,12 +514,17 @@ void D3DClass::BeginScene(float red, float green, float blue, float alpha)
 	// Clear the depth buffer.
 	m_deviceContext->ClearDepthStencilView(m_depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 
+	
+
 	return;
 }
 
 
 void D3DClass::EndScene()
 {
+
+	
+
 	// Present the back buffer to the screen since rendering is complete.
 	if (m_vsync_enabled)
 	{

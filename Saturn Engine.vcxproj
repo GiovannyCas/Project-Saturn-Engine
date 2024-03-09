@@ -139,41 +139,62 @@
     <Image Include="resources\small.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="imGui\imgui.cpp" />
+    <ClCompile Include="imGui\imgui_demo.cpp" />
+    <ClCompile Include="imGui\imgui_draw.cpp" />
+    <ClCompile Include="imGui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="imGui\imgui_impl_win32.cpp" />
+    <ClCompile Include="imGui\imgui_tables.cpp" />
+    <ClCompile Include="imGui\imgui_widgets.cpp" />
     <ClCompile Include="src\D3dClass.cpp" />
     <ClCompile Include="src\CameraClass.cpp" />
     <ClCompile Include="src\FontClass.cpp" />
     <ClCompile Include="src\FontShaderClass.cpp" />
     <ClCompile Include="src\FpsClass.cpp" />
+    <ClCompile Include="src\ImGuiClass.cpp" />
     <ClCompile Include="src\LightClass.cpp" />
     <ClCompile Include="src\LightShaderClass.cpp" />
     <ClCompile Include="src\ModelClass.cpp" />
     <ClCompile Include="src\ColorsShaderClass.cpp" />
     <ClCompile Include="src\ApplicationClass.cpp" />
     <ClCompile Include="src\InputClass.cpp" />
+    <ClCompile Include="src\PositionClass.cpp" />
     <ClCompile Include="src\ShaderManagerClass.cpp" />
     <ClCompile Include="src\TextClass.cpp" />
     <ClCompile Include="src\TextureClass.cpp" />
+    <ClCompile Include="src\TimerClass.cpp" />
     <ClCompile Include="src\WinMain.cpp" />
     <ClCompile Include="src\SystemClass.cpp" />
     <ClCompile Include="src\TextureShaderClass.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="imGui\imconfig.h" />
+    <ClInclude Include="imGui\imgui.h" />
+    <ClInclude Include="imGui\imgui_impl_dx11.h" />
+    <ClInclude Include="imGui\imgui_impl_win32.h" />
+    <ClInclude Include="imGui\imgui_internal.h" />
+    <ClInclude Include="imGui\imstb_rectpack.h" />
+    <ClInclude Include="imGui\imstb_textedit.h" />
+    <ClInclude Include="imGui\imstb_truetype.h" />
     <ClInclude Include="src\header\D3dClass.h" />
     <ClInclude Include="src\header\CameraClass.h" />
     <ClInclude Include="src\header\FontClass.h" />
     <ClInclude Include="src\header\FontShaderClass.h" />
     <ClInclude Include="src\header\FpsClass.h" />
+    <ClInclude Include="src\header\ImGuiClass.h" />
     <ClInclude Include="src\header\LightClass.h" />
     <ClInclude Include="src\header\LightShaderClass.h" />
     <ClInclude Include="src\header\ModelClass.h" />
     <ClInclude Include="src\header\ColorsShaderClass.h" />
     <ClInclude Include="src\header\ApplicationClass.h" />
     <ClInclude Include="src\header\InputClass.h" />
+    <ClInclude Include="src\header\PositionClass.h" />
     <ClInclude Include="src\header\ShaderManagerClass.h" />
     <ClInclude Include="src\header\SystemClass.h" />
     <ClInclude Include="src\header\TextClass.h" />
     <ClInclude Include="src\header\TextureClass.h" />
     <ClInclude Include="src\header\TextureShaderClass.h" />
+    <ClInclude Include="src\header\TimerClass.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\HLSL\colorVertexShader.hlsl">

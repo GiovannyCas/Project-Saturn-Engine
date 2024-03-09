@@ -9,6 +9,7 @@
 
 
 
+
 #include <d3d11.h>
 #include <DirectXMath.h>
 
@@ -21,6 +22,8 @@ private:
 	bool	m_vsync_enabled;
 	int		m_videoCardMemory;
 	char	m_videoCardDescription[128];
+	
+	
 
 	IDXGISwapChain*				m_swapChain;
 	ID3D11Device*				m_device;

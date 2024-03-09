@@ -7,8 +7,9 @@
 
 #include <Windows.h>
 
-#include "../header/InputClass.h"
-#include "../header/ApplicationClass.h"
+#include "InputClass.h"
+#include "ApplicationClass.h"
+#include "TimerClass.h"
 
 
 
@@ -24,6 +25,8 @@ private:
 
 	InputClass*			m_Input;
 	ApplicationClass*	m_Application;
+	TimerClass*			m_Timer;
+
 	////////////////
 	
 	//Functions////////
