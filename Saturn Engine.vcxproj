@@ -153,6 +153,7 @@
     <ClCompile Include="src\FpsClass.cpp" />
     <ClCompile Include="src\ImGuiClass.cpp" />
     <ClCompile Include="src\LightClass.cpp" />
+    <ClCompile Include="src\NormalMapShaderClass.cpp" />
     <ClCompile Include="src\LightShaderClass.cpp" />
     <ClCompile Include="src\ModelClass.cpp" />
     <ClCompile Include="src\ColorsShaderClass.cpp" />
@@ -178,11 +179,13 @@
     <ClInclude Include="imGui\imstb_truetype.h" />
     <ClInclude Include="src\header\D3dClass.h" />
     <ClInclude Include="src\header\CameraClass.h" />
+    <ClInclude Include="src\header\ECS.hpp" />
     <ClInclude Include="src\header\FontClass.h" />
     <ClInclude Include="src\header\FontShaderClass.h" />
     <ClInclude Include="src\header\FpsClass.h" />
     <ClInclude Include="src\header\ImGuiClass.h" />
     <ClInclude Include="src\header\LightClass.h" />
+    <ClInclude Include="src\header\NormalMapShaderClass.h" />
     <ClInclude Include="src\header\LightShaderClass.h" />
     <ClInclude Include="src\header\ModelClass.h" />
     <ClInclude Include="src\header\ColorsShaderClass.h" />
@@ -265,6 +268,22 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\HLSL\normalMapPixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <FileType>Document</FileType>
+    </None>
+    <None Include="src\HLSL\normalMapVertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
       <FileType>Document</FileType>
     </None>
   </ItemGroup>

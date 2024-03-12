@@ -6,7 +6,7 @@ ShaderManagerClass::ShaderManagerClass()
 {
     m_TextureShader = 0;
     m_LightShader = 0;
-    
+    m_NormalMapShader = 0;
 }
 
 
@@ -41,6 +41,15 @@ bool ShaderManagerClass::Initialize(ID3D11Device* device, HWND hwnd)
     {
         return false;
     }
+
+    // Create and initialize the normal map shader object.
+    m_NormalMapShader = new NormalMapShaderClass;
+
+    result = m_NormalMapShader->Initialize(device, hwnd);
+    if (!result)
+    {
+        return false;
+    }
    
     return true;
 
@@ -66,6 +75,13 @@ void ShaderManagerClass::Shutdown()
         m_TextureShader = 0;
     }
 
+    if (m_NormalMapShader)
+    {
+        m_NormalMapShader->Shutdown();
+        delete m_NormalMapShader ;
+        m_NormalMapShader = 0;
+    }
+
     return;
 }
 
@@ -85,6 +101,7 @@ bool ShaderManagerClass::RenderTextureShader(ID3D11DeviceContext* deviceContext,
 }
 
 
+
 bool ShaderManagerClass::RenderLightShader(ID3D11DeviceContext* deviceContext, int indexCount, DirectX::XMMATRIX worldMatrix, DirectX::XMMATRIX viewMatrix, DirectX::XMMATRIX projectionMatrix,
     ID3D11ShaderResourceView* texture, DirectX::XMFLOAT3 lightDirection, DirectX::XMFLOAT4 ambientColor, DirectX::XMFLOAT4 diffuseColor)
 {
@@ -93,6 +110,21 @@ bool ShaderManagerClass::RenderLightShader(ID3D11DeviceContext* deviceContext, i
 
     result = m_LightShader->Render(deviceContext, indexCount, worldMatrix, viewMatrix, 
         projectionMatrix, texture, lightDirection, ambientColor, diffuseColor);
+    if (!result)
+    {
+        return false;
+    }
+
+    return true;
+}
+
+bool ShaderManagerClass::RenderNormalMapShader(ID3D11DeviceContext* deviceContext, int indexCount, DirectX::XMMATRIX worldMatrix, DirectX::XMMATRIX viewMatrix, DirectX::XMMATRIX projectionMatrix,
+    ID3D11ShaderResourceView* colorTexture, ID3D11ShaderResourceView* normalTexture, DirectX::XMFLOAT3 lightDirection, DirectX::XMFLOAT4 diffuseColor)
+{
+    bool result;
+
+
+    result = m_NormalMapShader->Render(deviceContext, indexCount, worldMatrix, viewMatrix, projectionMatrix, colorTexture, normalTexture, lightDirection, diffuseColor);
     if (!result)
     {
         return false;

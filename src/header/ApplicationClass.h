@@ -16,11 +16,12 @@
 
 #include "ShaderManagerClass.h"
 
-#include "FpsClass.h"
 
 #include "ImGuiClass.h"
 
 #include "PositionClass.h"
+
+
 
 
 //GRAPHIC Settings//////
@@ -31,6 +32,13 @@ const float SCREEN_DEPTH = 1000.0f;
 const float SCREEN_NEAR = 0.3f;
 ////////////////////////
 
+enum groupLabel : std::size_t
+{
+	groupMap,
+	groupPlayer,
+	groupUI,
+	groupEnemy
+};
 
 class ApplicationClass
 {
@@ -42,23 +50,13 @@ private:
 
 	LightClass* m_Light;
 
-	FontShaderClass* m_FontShader;
-	FontClass* m_Font;
-
 	ShaderManagerClass* m_ShaderManager;
 
 	ImGuiClass* m_gui;
 	
 	PositionClass* m_Position;
 
-
-	FpsClass* m_Fps;
-	TextClass* m_FpsString;
-	int m_previousFps;
-
 	bool Render(float);
-	bool UpdateFps();
-	
 
 public:
 	ApplicationClass();

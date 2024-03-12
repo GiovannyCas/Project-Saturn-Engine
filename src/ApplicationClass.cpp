@@ -1,21 +1,18 @@
 #include "../src/header/ApplicationClass.h"
 
 
+
+
+
 ApplicationClass::ApplicationClass()
 {
 	m_Direct3D = 0;
 	m_Camera = 0;
 	m_Model = 0;
-	
+
 	m_Light = 0;
 
-	m_FontShader = 0;
-	m_Font = 0;
-	
 	m_gui = 0;
-
-	m_Fps = 0;
-	m_FpsString = 0;
 
 	m_Position = 0;
 }
@@ -33,10 +30,11 @@ ApplicationClass::~ApplicationClass()
 
 bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 {
-	
+
 	char fpsString[32];
 	char modelFilename[128];
 	char textureFilename[128];
+	char NormalMapFilename[128];
 	bool result;
 
 
@@ -74,36 +72,28 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 
 	// Set the file name of the texture file that we will be loading.
 	strcpy_s(textureFilename, "resources/stone01.tga");
+	strcpy_s(NormalMapFilename, "resources/normal01.tga");
 
 	// Create and initialize the model object.
 	m_Model = new ModelClass;
 
-	result = m_Model->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), modelFilename, textureFilename);
+	result = m_Model->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), modelFilename, textureFilename, NormalMapFilename);
 	if (!result)
 	{
 		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);
 		return false;
 	}
 
-	
-	
 
 	// Create and initialize the light object.
 	m_Light = new LightClass;
 
 	m_Light->SetAmbientColor(0.15f, 0.15f, 0.15f, 1.0f);
 	m_Light->SetDiffuseColor(1.0f, 1.0f, 1.0f, 1.0f);
-	m_Light->SetDirection(1.0f, 0.0f, 0.0f);
+	m_Light->SetDirection(0.0f, 0.0f, 1.0f);
 
-	// Create and initialize the font shader object.
-	m_FontShader = new FontShaderClass;
 
-	result = m_FontShader->Initialize(m_Direct3D->GetDevice(), hwnd);
-	if (!result)
-	{
-		MessageBox(hwnd, L"Could not initialize the font shader object.", L"Error", MB_OK);
-		return false;
-	}
+
 
 	//Create and initialize the shader manger object.
 	m_ShaderManager = new ShaderManagerClass;
@@ -113,33 +103,7 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	{
 		return false;
 	}
-	// Create and initialize the font object.
-	m_Font = new FontClass;
 
-	result = m_Font->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), 0);
-	if (!result)
-	{
-		return false;
-	}
-
-
-	// Create and initialize the fps object.
-	m_Fps = new FpsClass();
-
-	m_Fps->Initialize();
-
-	// Set the initial fps and fps string.
-	m_previousFps = -1;
-	strcpy_s(fpsString, "Fps: 0");
-
-	// Create and initialize the text object for the fps string.
-	m_FpsString = new TextClass;
-
-	result = m_FpsString->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, 32, m_Font, fpsString, 10, 10, 0.0f, 1.0f, 0.0f);
-	if (!result)
-	{
-		return false;
-	}
 
 	return true;
 }
@@ -154,36 +118,6 @@ void ApplicationClass::Shutdown()
 		m_Light = 0;
 	}
 
-	// Release the text object for the fps string.
-	if (m_FpsString)
-	{
-		m_FpsString->Shutdown();
-		delete m_FpsString;
-		m_FpsString = 0;
-	}
-
-	// Release the fps object.
-	if (m_Fps)
-	{
-		delete m_Fps;
-		m_Fps = 0;
-	}
-
-	// Release the font object.
-	if (m_Font)
-	{
-		m_Font->Shutdown();
-		delete m_Font;
-		m_Font = 0;
-	}
-
-	// Release the font shader object.
-	if (m_FontShader)
-	{
-		m_FontShader->Shutdown();
-		delete m_FontShader;
-		m_FontShader = 0;
-	}
 
 	// Release the light shader object.
 	if (m_ShaderManager)
@@ -230,6 +164,9 @@ void ApplicationClass::Shutdown()
 		m_Direct3D = 0;
 	}
 
+
+
+
 	return;
 }
 
@@ -238,12 +175,6 @@ bool ApplicationClass::Frame()
 {
 	static float rotation = 0.0f;
 	bool result;
-
-	/*result = UpdateFps();
-	if (!result)
-	{
-		return false;
-	}*/
 
 
 	// Update the rotation variable each frame.
@@ -283,39 +214,60 @@ bool ApplicationClass::Render(float rotation)
 	m_Direct3D->GetOrthoMatrix(orthoMatrix);
 
 	rotateMatrix = DirectX::XMMatrixRotationY(rotation);  // Build the rotation matrix.
-	translateMatrix = DirectX::XMMatrixTranslation(-2.0f, 0.0f, 0.0f);  // Build the translation matrix.
+	translateMatrix = DirectX::XMMatrixTranslation(0.0f, 0.0f, 0.0f);  // Build the translation matrix.
 
 	// Rotate the world matrix by the rotation value so that the model will spin.
 	worldMatrix = DirectX::XMMatrixMultiply(rotateMatrix, translateMatrix);
 
 	// Put the model vertex and index buffers on the graphics pipeline to prepare them for drawing.
-	m_Model->Render(m_Direct3D->GetDeviceContext());
 
-	// Render the model using the light shader.
-	result = m_ShaderManager->RenderLightShader(m_Direct3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, m_Model->GetTexture(),
-		m_Light->GetDirection(), m_Light->GetAmbientColor(), m_Light->GetDiffuseColor());
-	if (!result)
+	
+	m_Model->Render(m_Direct3D->GetDeviceContext());
+	
+	if (m_gui->GetIsTextureOn())
 	{
-		return false;
+		// Render the model using the Texture shader.
+		result = m_ShaderManager->RenderTextureShader(m_Direct3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, m_Model->GetTexture(0));
+		if (!result)
+		{
+			return false;
+		}
 	}
+
+
+	if (m_gui->GetIsAmbientLightOn()) {
+		// Render the model using the light shader.
+		
+		result = m_ShaderManager->RenderLightShader(m_Direct3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, m_Model->GetTexture(0),
+			m_Light->GetDirection(), m_Light->GetAmbientColor(), m_Light->GetDiffuseColor());
+		if (!result)
+		{
+			return false;
+		}
+	}
+
+	if (m_gui->GetIsNormalMapOn())
+	{
+		
+		// Render the model using the Normal Map shader.
+		result = m_ShaderManager->RenderNormalMapShader(m_Direct3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
+			m_Model->GetTexture(0), m_Model->GetTexture(1), m_Light->GetDirection(), m_Light->GetDiffuseColor());
+		if (!result)
+		{
+			return false;
+		}
+	}
+
+
+
 	
-	
+
 
 	// Disable the Z buffer and enable alpha blending for 2D rendering.
 	/*m_Direct3D->TurnZBufferOff();
 	m_Direct3D->EnableAlphaBlending();*/
 
 	//m_Direct3D->GetWorldMatrix(worldMatrix);
-
-	//// Render the fps text string using the font shader.
-	//m_FpsString->Render(m_Direct3D->GetDeviceContext());
-
-	//result = m_FontShader->Render(m_Direct3D->GetDeviceContext(), m_FpsString->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix,
-	//	m_Font->GetTexture(), m_FpsString->GetPixelColor());
-	//if (!result)
-	//{
-	//	return false;
-	//}
 
 	// Enable the Z buffer and disable alpha blending now that 2D rendering is complete.
 	/*m_Direct3D->TurnZBufferOn();
@@ -329,80 +281,11 @@ bool ApplicationClass::Render(float rotation)
 	return true;
 }
 
-bool ApplicationClass::UpdateFps()
-{
-	int fps;
-	char tempString[16], finalString[16];
-	float red, green, blue;
-	bool result;
-
-
-	// Update the fps each frame.
-	m_Fps->Frame();
-
-	// Get the current fps.
-	fps = m_Fps->GetFps();
-
-	// Check if the fps from the previous frame was the same, if so don't need to update the text string.
-	if (m_previousFps == fps)
-	{
-		return true;
-	}
-
-	// Store the fps for checking next frame.
-	m_previousFps = fps;
-
-	// Truncate the fps to below 100,000.
-	if (fps > 99999)
-	{
-		fps = 99999;
-	}
-
-	// Convert the fps integer to string format.
-	sprintf_s(tempString, "%d", fps);
-
-	// Setup the fps string.
-	strcpy_s(finalString, "Fps: ");
-	strcat_s(finalString, tempString);
-
-	// If fps is 60 or above set the fps color to green.
-	if (fps >= 60)
-	{
-		red = 0.0f;
-		green = 1.0f;
-		blue = 0.0f;
-	}
-
-	// If fps is below 60 set the fps color to yellow.
-	if (fps < 60)
-	{
-		red = 1.0f;
-		green = 1.0f;
-		blue = 0.0f;
-	}
-
-	// If fps is below 30 set the fps color to red.
-	if (fps < 30)
-	{
-		red = 1.0f;
-		green = 0.0f;
-		blue = 0.0f;
-	}
-
-	// Update the sentence vertex buffer with the new string information.
-	result = m_FpsString->UpdateText(m_Direct3D->GetDeviceContext(), m_Font, finalString, 10, 10, red, green, blue);
-	if (!result)
-	{
-		return false;
-	}
-
-	return true;
-}
 
 
 bool ApplicationClass::HandleInput(float frameTime, int input)
 {
-	
+
 	float posX, posY, posZ, rotX, rotY, rotZ;
 
 	// Set the frame time for calculating the updated position.
@@ -411,16 +294,16 @@ bool ApplicationClass::HandleInput(float frameTime, int input)
 	switch (input)
 	{
 	case 1:
-		m_Position->LookDownward(true);
+		m_Position->MoveDownward(true);
 		break;
 	case 2:
-		m_Position->TurnLeft(true);
+		m_Position->LookDownward(true);
 		break;
 	case 3:
-		m_Position->LookUpward(true);
+		m_Position->MoveUpward(true);
 		break;
 	case 4:
-		m_Position->TurnRight(true);
+		m_Position->LookUpward(true);
 		break;
 	case 5:
 		m_Position->MoveForward(true);
@@ -435,7 +318,7 @@ bool ApplicationClass::HandleInput(float frameTime, int input)
 		m_Position->TurnRight(true);
 		break;
 	default:
-			break;
+		break;
 	}
 
 
