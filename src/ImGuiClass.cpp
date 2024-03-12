@@ -13,9 +13,6 @@ ImGuiClass::ImGuiClass()
 
 };
 
-
-
-
 ImGuiClass::ImGuiClass(ImGuiClass& other)
 {
 

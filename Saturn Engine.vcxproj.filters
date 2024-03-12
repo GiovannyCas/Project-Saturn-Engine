@@ -190,9 +190,6 @@
     <ClInclude Include="src\header\TimerClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\ECS.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\header\NormalMapShaderClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>

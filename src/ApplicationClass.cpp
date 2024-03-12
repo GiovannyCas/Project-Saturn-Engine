@@ -9,11 +9,8 @@ ApplicationClass::ApplicationClass()
 	m_Direct3D = 0;
 	m_Camera = 0;
 	m_Model = 0;
-
 	m_Light = 0;
-
 	m_gui = 0;
-
 	m_Position = 0;
 }
 
@@ -48,6 +45,7 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 
+	// Creating the UI object.
 	m_gui = new ImGuiClass;
 
 	m_gui->Initialize(hwnd, m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext());
@@ -91,9 +89,6 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	m_Light->SetAmbientColor(0.15f, 0.15f, 0.15f, 1.0f);
 	m_Light->SetDiffuseColor(1.0f, 1.0f, 1.0f, 1.0f);
 	m_Light->SetDirection(0.0f, 0.0f, 1.0f);
-
-
-
 
 	//Create and initialize the shader manger object.
 	m_ShaderManager = new ShaderManagerClass;
@@ -257,11 +252,6 @@ bool ApplicationClass::Render(float rotation)
 			return false;
 		}
 	}
-
-
-
-	
-
 
 	// Disable the Z buffer and enable alpha blending for 2D rendering.
 	/*m_Direct3D->TurnZBufferOff();

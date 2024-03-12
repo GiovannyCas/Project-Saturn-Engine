@@ -12,11 +12,7 @@ D3DClass::D3DClass()
 	m_depthStencilState = 0;
 	m_depthStencilView = 0;
 	m_rasterState = 0;
-
-	
-
 	m_depthDisabledStencilState = 0;
-
 	m_alphaEnableBlendingState = 0;
 	m_alphaDisableBlendingState = 0;
 }
@@ -522,9 +518,6 @@ void D3DClass::BeginScene(float red, float green, float blue, float alpha)
 
 void D3DClass::EndScene()
 {
-
-	
-
 	// Present the back buffer to the screen since rendering is complete.
 	if (m_vsync_enabled)
 	{

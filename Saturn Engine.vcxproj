@@ -179,7 +179,6 @@
     <ClInclude Include="imGui\imstb_truetype.h" />
     <ClInclude Include="src\header\D3dClass.h" />
     <ClInclude Include="src\header\CameraClass.h" />
-    <ClInclude Include="src\header\ECS.hpp" />
     <ClInclude Include="src\header\FontClass.h" />
     <ClInclude Include="src\header\FontShaderClass.h" />
     <ClInclude Include="src\header\FpsClass.h" />

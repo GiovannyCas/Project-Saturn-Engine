@@ -18,7 +18,7 @@ class SystemClass
 {
 private:
 
-	//Variables////////
+	
 	LPCWSTR		 m_applicationName;
 	HINSTANCE	 m_hinstance;
 	HWND		 m_hwnd;
@@ -27,13 +27,13 @@ private:
 	ApplicationClass*	m_Application;
 	TimerClass*			m_Timer;
 
-	////////////////
 	
-	//Functions////////
+	
+	
 	bool Frame();
 	void InitializeWindows(int& screenWidth, int& screenHeight);
 	void ShutdownWindows();
-	///////////////////
+	
 public:
 	
 	//Functions////////
