@@ -1,12 +1,13 @@
 # Saturn Engine
 
-# A Graphics engine in C++ with DirectX API 
+# A Graphics engine in C++ with DirectX API and ImGui
 
 This is a hobby project to test my skills and learn Computer Graphics programming. From researching into the intricacies of the DirectX framework to grasping the nuances of the graphics pipeline and shader programming.
 
 * Developed a lightweight graphics viewer/editor with an emphasis on efficiency and user-friendliness.
 * Designed based on the Object-Oriented Programming (OOP) architecture to seamlessly integrate and optimize the engine's functionality.
 * Implemented cutting-edge systems and features, enabling real-time rendering of 3D objects.
+* Designed and implemented a user interface with ImGui to facilitate seamless interaction with the environment.
 
 Here are a preview of the graphic engine:
 
