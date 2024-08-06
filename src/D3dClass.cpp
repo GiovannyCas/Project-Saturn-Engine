@@ -326,6 +326,16 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 	// Now set the rasterizer state.
 	m_deviceContext->RSSetState(m_rasterState);
 
+	// Setup a raster description which turns off back face culling.
+	rasterDesc.CullMode = D3D11_CULL_NONE;
+
+	// Create the no culling rasterizer state.
+	result = m_device->CreateRasterizerState(&rasterDesc, &m_rasterStateNoCulling);
+	if (FAILED(result))
+	{
+		return false;
+	}
+
 	// Setup the viewport for rendering.
 	m_viewport.Width = (float)screenWidth;
 	m_viewport.Height = (float)screenHeight;
@@ -602,6 +612,23 @@ void D3DClass::TurnZBufferOn()
 void D3DClass::TurnZBufferOff()
 {
 	m_deviceContext->OMSetDepthStencilState(m_depthDisabledStencilState, 1);
+	return;
+}
+
+void D3DClass::TurnOnCulling()
+{
+	// Set the culling rasterizer state.
+	m_deviceContext->RSSetState(m_rasterState);
+
+	return;
+}
+
+
+void D3DClass::TurnOffCulling()
+{
+	// Set the no back face culling rasterizer state.
+	m_deviceContext->RSSetState(m_rasterStateNoCulling);
+
 	return;
 }
 

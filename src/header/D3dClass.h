@@ -33,6 +33,7 @@ private:
 	ID3D11DepthStencilState*	m_depthStencilState;
 	ID3D11DepthStencilView*		m_depthStencilView;
 	ID3D11RasterizerState*		m_rasterState;
+	ID3D11RasterizerState*		m_rasterStateNoCulling;
 
 	DirectX::XMMATRIX	m_projectionMatrix;
 	DirectX::XMMATRIX	m_worldMatrix;
@@ -70,6 +71,9 @@ public:
 
 	void TurnZBufferOn();
 	void TurnZBufferOff();
+
+	void TurnOnCulling();
+	void TurnOffCulling();
 
 	void EnableAlphaBlending();
 	void DisableAlphaBlending();

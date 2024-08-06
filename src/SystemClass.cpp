@@ -3,9 +3,9 @@
 
 SystemClass::SystemClass()
 {
-	m_Input = 0;
+
 	m_Application = 0;
-	m_Timer = 0;
+
 }
 
 SystemClass::SystemClass(const SystemClass& other)
@@ -30,29 +30,18 @@ bool SystemClass::Initialize()
 	// Initialize the windows api.
 	InitializeWindows(screenWidth, screenHeight);
 
-	// Create and initialize the input object.  This object will be used to handle reading the keyboard input from the user.
-	m_Input = new InputClass();
-	m_Input->Initialize(m_hinstance, m_hwnd, screenWidth, screenHeight);
 	
 	// Create and initialize the application class object.  This object will handle rendering all the graphics for this application.
 	m_Application = new ApplicationClass();
 	
-	result = m_Application->Initialize(screenWidth, screenHeight, m_hwnd);
+	result = m_Application->Initialize(m_hinstance, m_hwnd, screenWidth, screenHeight);
 
 	if (!result)
 	{
 		return false;
 	}
 
-	//Create and initialize the timer object.
-	m_Timer = new TimerClass();
-
-	result = m_Timer->Initialize();
-
-	if (!result)
-	{
-		return false;
-	}
+	
 
 	return true;
 
@@ -68,19 +57,8 @@ void SystemClass::Shutdown()
 		m_Application = 0;
 	}
 
-	// Release the input object.
-	if (m_Input)
-	{
-		m_Input->Shutdown();
-		delete m_Input;
-		m_Input = 0;
-	}
+	
 
-	if (m_Timer)
-	{
-		delete m_Timer;
-		m_Timer = 0;
-	}
 
 	// Shutdown the window.
 	ShutdownWindows();
@@ -138,24 +116,6 @@ bool SystemClass::Frame()
 
 
 
-	// Read the user input.
-	result = m_Input->Frame();
-	if (!result)
-	{
-		return false;
-	}
-
-	// Check if the user pressed escape and wants to exit the application.
-	if (m_Input->IsEscapePressed() == true)
-	{
-		return false;
-	}
-
-	m_Timer->Frame();
-
-
-
-	m_Application->HandleInput(m_Timer->GetTime(), m_Input->HandleInput());
 
 	// Do the frame processing for the application class object.
 	result = m_Application->Frame();

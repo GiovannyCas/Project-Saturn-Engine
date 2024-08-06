@@ -5,21 +5,12 @@
 
 //#include <Windows.h>
 #include "D3dClass.h"
-#include "CameraClass.h"
-#include "ModelClass.h"
-
-#include "LightClass.h"
-
-#include "fontshaderclass.h"
-#include "fontclass.h"
-#include "textclass.h"
-
+#include "TimerClass.h"
 #include "ShaderManagerClass.h"
-
-
+#include "SceneClass.h"
+#include "InputClass.h"
 #include "ImGuiClass.h"
 
-#include "PositionClass.h"
 
 
 
@@ -29,7 +20,7 @@
 const bool FULL_SCREEN = false;
 const bool VSYNC_ENABLED = true;
 const float SCREEN_DEPTH = 1000.0f;
-const float SCREEN_NEAR = 0.3f;
+const float SCREEN_NEAR = 0.1f;
 ////////////////////////
 
 enum groupLabel : std::size_t
@@ -45,28 +36,22 @@ class ApplicationClass
 private:
 
 	D3DClass* m_Direct3D;
-	CameraClass* m_Camera;
-	ModelClass* m_Model;
-
-	LightClass* m_Light;
-
 	ShaderManagerClass* m_ShaderManager;
-
+	SceneClass* m_Scene;
+	TimerClass* m_Timer;
+	InputClass* m_Input;
 	ImGuiClass* m_gui;
 	
-	PositionClass* m_Position;
-
-	bool Render(float);
 
 public:
 	ApplicationClass();
 	ApplicationClass(const ApplicationClass& other);
 	~ApplicationClass();
 
-	bool Initialize(int screenWidth, int screenHight, HWND hwnd);
+	bool Initialize(HINSTANCE hinstance, HWND hwnd, int screenWidth, int screenHeight);
 	void Shutdown();
 	bool Frame();
-	bool HandleInput(float, int);
+
 
 
 

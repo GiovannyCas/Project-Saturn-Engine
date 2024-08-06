@@ -160,7 +160,11 @@
     <ClCompile Include="src\ApplicationClass.cpp" />
     <ClCompile Include="src\InputClass.cpp" />
     <ClCompile Include="src\PositionClass.cpp" />
+    <ClCompile Include="src\SceneClass.cpp" />
     <ClCompile Include="src\ShaderManagerClass.cpp" />
+    <ClCompile Include="src\SkydomeClass.cpp" />
+    <ClCompile Include="src\SkydomeShaderClass.cpp" />
+    <ClCompile Include="src\TerrainClass.cpp" />
     <ClCompile Include="src\TextClass.cpp" />
     <ClCompile Include="src\TextureClass.cpp" />
     <ClCompile Include="src\TimerClass.cpp" />
@@ -191,8 +195,12 @@
     <ClInclude Include="src\header\ApplicationClass.h" />
     <ClInclude Include="src\header\InputClass.h" />
     <ClInclude Include="src\header\PositionClass.h" />
+    <ClInclude Include="src\header\SceneClass.h" />
     <ClInclude Include="src\header\ShaderManagerClass.h" />
+    <ClInclude Include="src\header\SkydomeClass.h" />
+    <ClInclude Include="src\header\SkydomeShaderClass.h" />
     <ClInclude Include="src\header\SystemClass.h" />
+    <ClInclude Include="src\header\TerrainClass.h" />
     <ClInclude Include="src\header\TextClass.h" />
     <ClInclude Include="src\header\TextureClass.h" />
     <ClInclude Include="src\header\TextureShaderClass.h" />
@@ -279,6 +287,22 @@
       <FileType>Document</FileType>
     </None>
     <None Include="src\HLSL\normalMapVertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\HLSL\skydomePixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <FileType>Document</FileType>
+    </None>
+    <None Include="src\HLSL\skydomeVertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>

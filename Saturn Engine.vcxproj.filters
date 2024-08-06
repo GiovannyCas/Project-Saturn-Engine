@@ -107,6 +107,18 @@
     <ClCompile Include="src\NormalMapShaderClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\SceneClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TerrainClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SkydomeClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SkydomeShaderClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\header\SystemClass.h">
@@ -193,6 +205,18 @@
     <ClInclude Include="src\header\NormalMapShaderClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\header\SceneClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\TerrainClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\SkydomeClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\SkydomeShaderClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\HLSL\colorVertexShader.hlsl" />
@@ -205,5 +229,7 @@
     <None Include="src\HLSL\fontPixelShader.hlsl" />
     <None Include="src\HLSL\normalMapPixelShader.hlsl" />
     <None Include="src\HLSL\normalMapVertexShader.hlsl" />
+    <None Include="src\HLSL\skydomeVertexShader.hlsl" />
+    <None Include="src\HLSL\skydomePixelShader.hlsl" />
   </ItemGroup>
 </Project>
