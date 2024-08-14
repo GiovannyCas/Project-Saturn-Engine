@@ -23,55 +23,55 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\WinMain.cpp">
+    <ClCompile Include="Engine\src\WinMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\SystemClass.cpp">
+    <ClCompile Include="Engine\src\app\SystemClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\InputClass.cpp">
+    <ClCompile Include="Engine\src\Input\InputClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ApplicationClass.cpp">
+    <ClCompile Include="Engine\src\app\ApplicationClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ColorsShaderClass.cpp">
+    <ClCompile Include="Engine\src\Renderer\Shaders\Types\ColorsShaderClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ModelClass.cpp">
+    <ClCompile Include="Engine\src\Renderer\ModelClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\CameraClass.cpp">
+    <ClCompile Include="Engine\src\Camera\CameraClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\D3dClass.cpp">
+    <ClCompile Include="Engine\src\DirectX\DirectXClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\TextureShaderClass.cpp">
+    <ClCompile Include="Engine\src\Renderer\Shaders\Types\TextureShaderClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\TextureClass.cpp">
+    <ClCompile Include="Engine\src\Renderer\TextureClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\LightShaderClass.cpp">
+    <ClCompile Include="Engine\src\Renderer\Shaders\Types\LightShaderClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\LightClass.cpp">
+    <ClCompile Include="Engine\src\Renderer\LightClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\FontClass.cpp">
+    <ClCompile Include="Engine\src\Renderer\Shaders\Types\FontClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\FontShaderClass.cpp">
+    <ClCompile Include="Engine\src\Renderer\Shaders\Types\FontShaderClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\TextClass.cpp">
+    <ClCompile Include="Engine\src\Renderer\TextClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\FpsClass.cpp">
+    <ClCompile Include="Engine\src\Utility\FpsClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ShaderManagerClass.cpp">
+    <ClCompile Include="Engine\src\Renderer\Shaders\ShaderManagerClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="imGui\imgui.cpp">
@@ -95,78 +95,78 @@
     <ClCompile Include="imGui\imgui_widgets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ImGuiClass.cpp">
+    <ClCompile Include="Engine\src\UI\ImGuiClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\PositionClass.cpp">
+    <ClCompile Include="Engine\src\Common\PositionClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\TimerClass.cpp">
+    <ClCompile Include="Engine\src\Utility\TimerClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\NormalMapShaderClass.cpp">
+    <ClCompile Include="Engine\src\Renderer\Shaders\Types\NormalMapShaderClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\SceneClass.cpp">
+    <ClCompile Include="Engine\src\Utility\SceneClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\TerrainClass.cpp">
+    <ClCompile Include="Engine\src\Renderer\Types\TerrainClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\SkydomeClass.cpp">
+    <ClCompile Include="Engine\src\Renderer\Types\SkydomeClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\SkydomeShaderClass.cpp">
+    <ClCompile Include="Engine\src\Renderer\Shaders\Types\SkydomeShaderClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\header\SystemClass.h">
+    <ClInclude Include="Engine\src\header\SystemClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\InputClass.h">
+    <ClInclude Include="Engine\src\header\InputClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\ApplicationClass.h">
+    <ClInclude Include="Engine\src\header\ApplicationClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\ColorsShaderClass.h">
+    <ClInclude Include="Engine\src\header\ColorsShaderClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\ModelClass.h">
+    <ClInclude Include="Engine\src\header\ModelClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\CameraClass.h">
+    <ClInclude Include="Engine\src\header\CameraClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\D3dClass.h">
+    <ClInclude Include="Engine\src\header\D3dClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\TextureShaderClass.h">
+    <ClInclude Include="Engine\src\header\TextureShaderClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\TextureClass.h">
+    <ClInclude Include="Engine\src\header\TextureClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\LightShaderClass.h">
+    <ClInclude Include="Engine\src\header\LightShaderClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\LightClass.h">
+    <ClInclude Include="Engine\src\header\LightClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\FontClass.h">
+    <ClInclude Include="Engine\src\header\FontClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\FontShaderClass.h">
+    <ClInclude Include="Engine\src\header\FontShaderClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\TextClass.h">
+    <ClInclude Include="Engine\src\header\TextClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\FpsClass.h">
+    <ClInclude Include="Engine\src\header\FpsClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\ShaderManagerClass.h">
+    <ClInclude Include="Engine\src\header\ShaderManagerClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="imGui\imconfig.h">
@@ -193,43 +193,43 @@
     <ClInclude Include="imGui\imstb_truetype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\ImGuiClass.h">
+    <ClInclude Include="Engine\src\header\ImGuiClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\PositionClass.h">
+    <ClInclude Include="Engine\src\header\PositionClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\TimerClass.h">
+    <ClInclude Include="Engine\src\header\TimerClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\NormalMapShaderClass.h">
+    <ClInclude Include="Engine\src\header\NormalMapShaderClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\SceneClass.h">
+    <ClInclude Include="Engine\src\header\SceneClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\TerrainClass.h">
+    <ClInclude Include="Engine\src\header\TerrainClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\SkydomeClass.h">
+    <ClInclude Include="Engine\src\header\SkydomeClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\header\SkydomeShaderClass.h">
+    <ClInclude Include="Engine\src\header\SkydomeShaderClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\HLSL\colorVertexShader.hlsl" />
-    <None Include="src\HLSL\colorPixelShader.hlsl" />
-    <None Include="src\HLSL\textureVertexShader.hlsl" />
-    <None Include="src\HLSL\texturePixelShader.hlsl" />
-    <None Include="src\HLSL\lightVertexShader.hlsl" />
-    <None Include="src\HLSL\lightPixelShader.hlsl" />
-    <None Include="src\HLSL\fontVertexShader.hlsl" />
-    <None Include="src\HLSL\fontPixelShader.hlsl" />
-    <None Include="src\HLSL\normalMapPixelShader.hlsl" />
-    <None Include="src\HLSL\normalMapVertexShader.hlsl" />
-    <None Include="src\HLSL\skydomeVertexShader.hlsl" />
-    <None Include="src\HLSL\skydomePixelShader.hlsl" />
+    <None Include="Engine\src\HLSL\colorVertexShader.hlsl" />
+    <None Include="Engine\src\HLSL\colorPixelShader.hlsl" />
+    <None Include="Engine\src\HLSL\textureVertexShader.hlsl" />
+    <None Include="Engine\src\HLSL\texturePixelShader.hlsl" />
+    <None Include="Engine\src\HLSL\lightVertexShader.hlsl" />
+    <None Include="Engine\src\HLSL\lightPixelShader.hlsl" />
+    <None Include="Engine\src\HLSL\fontVertexShader.hlsl" />
+    <None Include="Engine\src\HLSL\fontPixelShader.hlsl" />
+    <None Include="Engine\src\HLSL\normalMapPixelShader.hlsl" />
+    <None Include="Engine\src\HLSL\normalMapVertexShader.hlsl" />
+    <None Include="Engine\src\HLSL\skydomeVertexShader.hlsl" />
+    <None Include="Engine\src\HLSL\skydomePixelShader.hlsl" />
   </ItemGroup>
 </Project>

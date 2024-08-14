@@ -70,6 +70,22 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin\intermediate\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin\intermediate\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin\intermediate\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin\intermediate\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -78,6 +94,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalIncludeDirectories>$(SolutionDir)imGui;$(SolutionDir)Engine/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -94,6 +111,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalIncludeDirectories>$(SolutionDir)imGui;$(SolutionDir)Engine/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -110,6 +128,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalIncludeDirectories>$(SolutionDir)imGui;$(SolutionDir)Engine/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -126,6 +145,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalIncludeDirectories>$(SolutionDir)imGui;$(SolutionDir)Engine/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -146,31 +166,31 @@
     <ClCompile Include="imGui\imgui_impl_win32.cpp" />
     <ClCompile Include="imGui\imgui_tables.cpp" />
     <ClCompile Include="imGui\imgui_widgets.cpp" />
-    <ClCompile Include="src\D3dClass.cpp" />
-    <ClCompile Include="src\CameraClass.cpp" />
-    <ClCompile Include="src\FontClass.cpp" />
-    <ClCompile Include="src\FontShaderClass.cpp" />
-    <ClCompile Include="src\FpsClass.cpp" />
-    <ClCompile Include="src\ImGuiClass.cpp" />
-    <ClCompile Include="src\LightClass.cpp" />
-    <ClCompile Include="src\NormalMapShaderClass.cpp" />
-    <ClCompile Include="src\LightShaderClass.cpp" />
-    <ClCompile Include="src\ModelClass.cpp" />
-    <ClCompile Include="src\ColorsShaderClass.cpp" />
-    <ClCompile Include="src\ApplicationClass.cpp" />
-    <ClCompile Include="src\InputClass.cpp" />
-    <ClCompile Include="src\PositionClass.cpp" />
-    <ClCompile Include="src\SceneClass.cpp" />
-    <ClCompile Include="src\ShaderManagerClass.cpp" />
-    <ClCompile Include="src\SkydomeClass.cpp" />
-    <ClCompile Include="src\SkydomeShaderClass.cpp" />
-    <ClCompile Include="src\TerrainClass.cpp" />
-    <ClCompile Include="src\TextClass.cpp" />
-    <ClCompile Include="src\TextureClass.cpp" />
-    <ClCompile Include="src\TimerClass.cpp" />
-    <ClCompile Include="src\WinMain.cpp" />
-    <ClCompile Include="src\SystemClass.cpp" />
-    <ClCompile Include="src\TextureShaderClass.cpp" />
+    <ClCompile Include="Engine\src\DirectX\DirectXClass.cpp" />
+    <ClCompile Include="Engine\src\Camera\CameraClass.cpp" />
+    <ClCompile Include="Engine\src\Renderer\Shaders\Types\FontClass.cpp" />
+    <ClCompile Include="Engine\src\Renderer\Shaders\Types\FontShaderClass.cpp" />
+    <ClCompile Include="Engine\src\Utility\FpsClass.cpp" />
+    <ClCompile Include="Engine\src\UI\ImGuiClass.cpp" />
+    <ClCompile Include="Engine\src\Renderer\LightClass.cpp" />
+    <ClCompile Include="Engine\src\Renderer\Shaders\Types\NormalMapShaderClass.cpp" />
+    <ClCompile Include="Engine\src\Renderer\Shaders\Types\LightShaderClass.cpp" />
+    <ClCompile Include="Engine\src\Renderer\ModelClass.cpp" />
+    <ClCompile Include="Engine\src\Renderer\Shaders\Types\ColorsShaderClass.cpp" />
+    <ClCompile Include="Engine\src\app\ApplicationClass.cpp" />
+    <ClCompile Include="Engine\src\Input\InputClass.cpp" />
+    <ClCompile Include="Engine\src\Common\PositionClass.cpp" />
+    <ClCompile Include="Engine\src\Utility\SceneClass.cpp" />
+    <ClCompile Include="Engine\src\Renderer\Shaders\ShaderManagerClass.cpp" />
+    <ClCompile Include="Engine\src\Renderer\Types\SkydomeClass.cpp" />
+    <ClCompile Include="Engine\src\Renderer\Shaders\Types\SkydomeShaderClass.cpp" />
+    <ClCompile Include="Engine\src\Renderer\Types\TerrainClass.cpp" />
+    <ClCompile Include="Engine\src\Renderer\TextClass.cpp" />
+    <ClCompile Include="Engine\src\Renderer\TextureClass.cpp" />
+    <ClCompile Include="Engine\src\Utility\TimerClass.cpp" />
+    <ClCompile Include="Engine\src\WinMain.cpp" />
+    <ClCompile Include="Engine\src\app\SystemClass.cpp" />
+    <ClCompile Include="Engine\src\Renderer\Shaders\Types\TextureShaderClass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imGui\imconfig.h" />
@@ -181,33 +201,33 @@
     <ClInclude Include="imGui\imstb_rectpack.h" />
     <ClInclude Include="imGui\imstb_textedit.h" />
     <ClInclude Include="imGui\imstb_truetype.h" />
-    <ClInclude Include="src\header\D3dClass.h" />
-    <ClInclude Include="src\header\CameraClass.h" />
-    <ClInclude Include="src\header\FontClass.h" />
-    <ClInclude Include="src\header\FontShaderClass.h" />
-    <ClInclude Include="src\header\FpsClass.h" />
-    <ClInclude Include="src\header\ImGuiClass.h" />
-    <ClInclude Include="src\header\LightClass.h" />
-    <ClInclude Include="src\header\NormalMapShaderClass.h" />
-    <ClInclude Include="src\header\LightShaderClass.h" />
-    <ClInclude Include="src\header\ModelClass.h" />
-    <ClInclude Include="src\header\ColorsShaderClass.h" />
-    <ClInclude Include="src\header\ApplicationClass.h" />
-    <ClInclude Include="src\header\InputClass.h" />
-    <ClInclude Include="src\header\PositionClass.h" />
-    <ClInclude Include="src\header\SceneClass.h" />
-    <ClInclude Include="src\header\ShaderManagerClass.h" />
-    <ClInclude Include="src\header\SkydomeClass.h" />
-    <ClInclude Include="src\header\SkydomeShaderClass.h" />
-    <ClInclude Include="src\header\SystemClass.h" />
-    <ClInclude Include="src\header\TerrainClass.h" />
-    <ClInclude Include="src\header\TextClass.h" />
-    <ClInclude Include="src\header\TextureClass.h" />
-    <ClInclude Include="src\header\TextureShaderClass.h" />
-    <ClInclude Include="src\header\TimerClass.h" />
+    <ClInclude Include="Engine\src\header\D3dClass.h" />
+    <ClInclude Include="Engine\src\header\CameraClass.h" />
+    <ClInclude Include="Engine\src\header\FontClass.h" />
+    <ClInclude Include="Engine\src\header\FontShaderClass.h" />
+    <ClInclude Include="Engine\src\header\FpsClass.h" />
+    <ClInclude Include="Engine\src\header\ImGuiClass.h" />
+    <ClInclude Include="Engine\src\header\LightClass.h" />
+    <ClInclude Include="Engine\src\header\NormalMapShaderClass.h" />
+    <ClInclude Include="Engine\src\header\LightShaderClass.h" />
+    <ClInclude Include="Engine\src\header\ModelClass.h" />
+    <ClInclude Include="Engine\src\header\ColorsShaderClass.h" />
+    <ClInclude Include="Engine\src\header\ApplicationClass.h" />
+    <ClInclude Include="Engine\src\header\InputClass.h" />
+    <ClInclude Include="Engine\src\header\PositionClass.h" />
+    <ClInclude Include="Engine\src\header\SceneClass.h" />
+    <ClInclude Include="Engine\src\header\ShaderManagerClass.h" />
+    <ClInclude Include="Engine\src\header\SkydomeClass.h" />
+    <ClInclude Include="Engine\src\header\SkydomeShaderClass.h" />
+    <ClInclude Include="Engine\src\header\SystemClass.h" />
+    <ClInclude Include="Engine\src\header\TerrainClass.h" />
+    <ClInclude Include="Engine\src\header\TextClass.h" />
+    <ClInclude Include="Engine\src\header\TextureClass.h" />
+    <ClInclude Include="Engine\src\header\TextureShaderClass.h" />
+    <ClInclude Include="Engine\src\header\TimerClass.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\HLSL\colorVertexShader.hlsl">
+    <None Include="Engine\src\HLSL\colorVertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
@@ -216,7 +236,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\HLSL\colorPixelShader.hlsl">
+    <None Include="Engine\src\HLSL\colorPixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
@@ -225,7 +245,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\HLSL\textureVertexShader.hlsl">
+    <None Include="Engine\src\HLSL\textureVertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
@@ -234,7 +254,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\HLSL\texturePixelShader.hlsl">
+    <None Include="Engine\src\HLSL\texturePixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
@@ -243,7 +263,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\HLSL\lightVertexShader.hlsl">
+    <None Include="Engine\src\HLSL\lightVertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
@@ -252,7 +272,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\HLSL\lightPixelShader.hlsl">
+    <None Include="Engine\src\HLSL\lightPixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
@@ -261,7 +281,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\HLSL\fontVertexShader.hlsl">
+    <None Include="Engine\src\HLSL\fontVertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
@@ -270,7 +290,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\HLSL\fontPixelShader.hlsl">
+    <None Include="Engine\src\HLSL\fontPixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
@@ -279,14 +299,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\HLSL\normalMapPixelShader.hlsl">
+    <None Include="Engine\src\HLSL\normalMapPixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
       <FileType>Document</FileType>
     </None>
-    <None Include="src\HLSL\normalMapVertexShader.hlsl">
+    <None Include="Engine\src\HLSL\normalMapVertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
@@ -295,14 +315,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\HLSL\skydomePixelShader.hlsl">
+    <None Include="Engine\src\HLSL\skydomePixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
       <FileType>Document</FileType>
     </None>
-    <None Include="src\HLSL\skydomeVertexShader.hlsl">
+    <None Include="Engine\src\HLSL\skydomeVertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
